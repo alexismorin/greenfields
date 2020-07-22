@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d6b20ba6640124b9a73013820eb47d, type: 3}
+  m_Name: Forest Normal
+  m_EditorClassIdentifier: 
+  tintGround: 0
+  groundColour: {r: 1, g: 1, b: 1, a: 1}
+  wetGroundColour: {r: 1, g: 1, b: 1, a: 1}
+  roadColour: {r: 0.3679245, g: 0.23927039, b: 0.12322001, a: 0}
+  fence: {fileID: 0}
+  brokenFence: {fileID: 0}
+  buildings: []
+  treeDensity: 0.265
+  trees:
+  - {fileID: 1143200903902107845, guid: 358811efb494de744804aa930aff509f, type: 3}
+  - {fileID: 8560707974254147085, guid: 2b1d064b9a7ec234d89ce25cefb245a3, type: 3}
+  treeSizes: {x: 0.75, y: 1.25}
+  groundCoverageDensity: 0.472
+  groundCoverage:
+  - {fileID: 3375557448348449027, guid: f56274f2b0fade74386904b698ef25aa, type: 3}
+  decorationDensity: 0.5
+  decoration: []
