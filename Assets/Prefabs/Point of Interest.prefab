@@ -197,3 +197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathDrawDistance: 1
   samples: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

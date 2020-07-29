@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tintGround: 0
   groundColour: {r: 1, g: 1, b: 1, a: 1}
-  wetGroundColour: {r: 1, g: 1, b: 1, a: 1}
+  wetGroundColour: {r: 0, g: 0.5188679, b: 0.0118131, a: 1}
   roadColour: {r: 0.3679245, g: 0.23927039, b: 0.12322001, a: 0}
   fence: {fileID: 0}
   brokenFence: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tintGround: 1
   groundColour: {r: 0.23584908, g: 0.23524053, b: 0.065637246, a: 1}
-  wetGroundColour: {r: 1, g: 1, b: 1, a: 1}
+  wetGroundColour: {r: 0, g: 0.5188679, b: 0.0118131, a: 1}
   roadColour: {r: 0.23529412, g: 0.23529412, b: 0.06666667, a: 1}
   fence: {fileID: 0}
   brokenFence: {fileID: 0}
@@ -23,7 +23,7 @@ MonoBehaviour:
   trees:
   - {fileID: 1143200903902107845, guid: 358811efb494de744804aa930aff509f, type: 3}
   treeSizes: {x: 1, y: 1}
-  groundCoverageDensity: 0.591
+  groundCoverageDensity: 0.622
   groundCoverage:
   - {fileID: 3375557448348449027, guid: f56274f2b0fade74386904b698ef25aa, type: 3}
   decorationDensity: 0.5

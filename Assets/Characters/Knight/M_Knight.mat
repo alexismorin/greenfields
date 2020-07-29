@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Terrain
-  m_Shader: {fileID: 4800000, guid: 133baf720de219e4db1c414cda8a5c60, type: 3}
+  m_Name: M_Knight
+  m_Shader: {fileID: 4800000, guid: 38825887aab8b0d49bc0d7a0ccc3f2d3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -64,28 +64,29 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AlphaChannelAnimationScale: 0
+    - _AlphaChannelPosterize: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+    - _DiffuseisVertexColors: 0
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _MaxDeform: 0.025
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PosterizePower: 3
+    - _PosterizePower: 25
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
-    - _Color: {r: 0.64565164, g: 0.7735849, b: 0.5947846, a: 1}
-    - _DampGrassColor: {r: 0.27166376, g: 0.39622638, b: 0, a: 1}
-    - _DirtColor: {r: 0.44339618, g: 0.37743306, b: 0.29490027, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GrassColor: {r: 0.397403, g: 0.5098039, b: 0.24705878, a: 1}
-    - _Tint: {r: 0.36200178, g: 0.49056602, b: 0.31238875, a: 1}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}

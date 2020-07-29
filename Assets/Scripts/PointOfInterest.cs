@@ -9,11 +9,11 @@ public class PointOfInterest : MonoBehaviour {
     [SerializeField]
     Zone[] possibleZones;
 
-    [Space(10)]
+    [Space (10)]
 
     public Zone zone;
 
-    [Header("Generators")]
+    [Header ("Generators")]
     [SerializeField]
     GroundColoringGenerator groundColoringGenerator;
     [SerializeField]
@@ -23,25 +23,25 @@ public class PointOfInterest : MonoBehaviour {
     [SerializeField]
     FoliageGenerator foliageGenerator;
 
-    public void Generate(Voronoi sourceVoronoi, Generation world) {
+    public void Generate (Voronoi sourceVoronoi, Generation world) {
 
-        zone = possibleZones[Random.Range(0, possibleZones.Length)];
+        zone = possibleZones[Random.Range (0, possibleZones.Length)];
+        gameObject.name = zone.name;
 
-        groundColoringGenerator.Generate(sourceVoronoi, world, zone);
+        groundColoringGenerator.Generate (sourceVoronoi, world, zone);
 
         if (zone.fence != null) {
-            fenceGenerator.Generate(sourceVoronoi, world, zone);
+            fenceGenerator.Generate (sourceVoronoi, world, zone);
         }
 
         if (zone.trees.Length > 0 || zone.groundCoverage.Length > 0) {
-            foliageGenerator.Generate(sourceVoronoi, world, zone);
+            foliageGenerator.Generate (sourceVoronoi, world, zone, this);
         }
 
-        roadGenerator.Generate(sourceVoronoi, world, zone);
+    }
 
-        //     world.roads = voronoi.SpanningTree(KruskalType.MINIMUM);
-        //    world.shortestPaths = voronoi.DelaunayTriangulation();
-
+    public void FoliageGenerationCallback (Voronoi sourceVoronoi, Generation world) {
+        roadGenerator.Generate (sourceVoronoi, world, zone);
     }
 
 }

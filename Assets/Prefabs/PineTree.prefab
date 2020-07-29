@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5344002209430037266}
   - component: {fileID: 7912053770222704600}
   - component: {fileID: 2199939095118555763}
-  - component: {fileID: 1684615016841373651}
   - component: {fileID: 3549183695849839985}
   m_Layer: 0
   m_Name: PineTree
@@ -96,25 +95,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3049965, y: 3.632794, z: 0.3119421}
   m_Center: {x: -0.025278091, y: 1.5570207, z: -0.02915144}
---- !u!114 &1684615016841373651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8560707974254147085}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b27484c198c2eb4e97f8b4c7b3ed7f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deformMesh: 0
-  collisonTag: Terrain
-  deformLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  randomYRotation: 1
-  orientToSurfaceNormal: 0
 --- !u!114 &3549183695849839985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,3 +114,4 @@ MonoBehaviour:
     m_Bits: 0
   randomYRotation: 1
   orientToSurfaceNormal: 0
+  useGroundColor: 0

@@ -12,61 +12,76 @@ public class RoadGenerator : MonoBehaviour {
     [SerializeField]
     int samples = 10;
 
-    public void Generate(Voronoi voronoi, Generation world, Zone zone) {
+    [SerializeField]
+    LayerMask layerMask;
 
-        List<LineSegment> roads = voronoi.SpanningTree(KruskalType.MINIMUM);
-        List<Triangle> triangles = ReturnSiteTriangles.SiteTriangles(voronoi, new Vector2(transform.position.x, transform.position.z), world.worldSize);
+    public void Generate (Voronoi voronoi, Generation world, Zone zone) {
 
-        foreach (var road in roads) {
+        List<LineSegment> roads = voronoi.SpanningTree (KruskalType.MINIMUM);
+        List<Triangle> triangles = ReturnSiteTriangles.SiteTriangles (voronoi, new Vector2 (transform.position.x, transform.position.z), world.worldSize);
 
-            Vector2 a = (Vector2) road.p0;
-            Vector2 b = (Vector2) road.p1;
-            Vector3 startPos = new Vector3(a.x, 100f, a.y);
-            Vector3 endPos = new Vector3(b.x, 100f, b.y);
-            //   Debug.DrawLine(startPos, endPos, Color.red, 100f);
+        foreach (Triangle triangle in triangles) {
 
-            float distance = Vector3.Distance(startPos, endPos);
-            int roadSampleCount = Mathf.RoundToInt(distance) * samples;
+            foreach (var road in roads) {
 
-            for (int i = 0; i < roadSampleCount; i++) {
-                float progress = 1f / roadSampleCount * i;
-                Vector3 spawnPos = Vector3.Lerp(startPos, endPos, progress);
+                if (InTriangle ((Vector2) road.p0, triangle.sites[0].Coord, triangle.sites[1].Coord, triangle.sites[2].Coord)) {
 
-                RaycastHit hit;
-                if (Physics.SphereCast(spawnPos, 3f, Vector3.down, out hit, 200f)) {
+                    Vector2 a = (Vector2) road.p0;
+                    Vector2 b = (Vector2) road.p1;
+                    Vector3 startPos = new Vector3 (a.x, 100f, a.y);
+                    Vector3 endPos = new Vector3 (b.x, 100f, b.y);
 
-                    Debug.DrawLine(hit.point, hit.point + Vector3.up, Color.red, 100f);
+                    float distance = Vector3.Distance (startPos, endPos);
+                    int roadSampleCount = Mathf.RoundToInt (distance) * samples;
 
-                    // Kill fences and trees
-                    if (hit.collider.tag != "Terrain") {
-                        Destroy(hit.transform.gameObject);
-                    }
+                    for (int i = 0; i < roadSampleCount; i++) {
+                        float progress = 1f / roadSampleCount * i;
+                        Vector3 spawnPos = Vector3.Lerp (startPos, endPos, progress);
 
-                    if (hit.collider.tag == "Terrain") {
-                        MeshFilter meshFilter = hit.transform.gameObject.GetComponent<MeshFilter>();
-                        Mesh mesh = meshFilter.mesh;
-                        Vector3[] vertices = mesh.vertices;
-                        Color[] colors = mesh.colors;
+                        RaycastHit hit;
 
-                        for (int j = 0; j < vertices.Length; j++) {
-                            // World positon of the vertex
-                            Vector3 worldPositionVertex = meshFilter.transform.TransformPoint(vertices[j]);
-                            if (Vector3.Distance(worldPositionVertex, hit.point) < pathDrawDistance) {
-                                colors[j] = zone.roadColour;
+                        if (Physics.SphereCast (spawnPos, 1f, Vector3.down, out hit, 200f, layerMask)) {
+
+                            // Kill fences and trees
+                            if (hit.collider.tag != "Terrain") {
+                                hit.transform.GetComponent<Collider> ().enabled = false;
+                                Destroy (hit.transform.gameObject);
+
                             }
+
+                            if (hit.collider.tag == "Terrain") {
+                                MeshFilter meshFilter = hit.transform.gameObject.GetComponent<MeshFilter> ();
+                                Mesh mesh = meshFilter.mesh;
+                                Vector3[] vertices = mesh.vertices;
+                                Color[] colors = mesh.colors;
+
+                                for (int j = 0; j < vertices.Length; j++) {
+                                    // World positon of the vertex
+                                    Vector3 worldPositionVertex = meshFilter.transform.TransformPoint (vertices[j]);
+                                    if (Vector3.Distance (worldPositionVertex, hit.point) < pathDrawDistance) {
+                                        colors[j] = zone.roadColour;
+                                    }
+                                }
+                                mesh.colors = colors;
+                                meshFilter.mesh = mesh;
+
+                            }
+
                         }
-                        mesh.colors = colors;
-                        meshFilter.mesh = mesh;
-
                     }
-
                 }
-
             }
-
         }
 
     }
 
+    public bool InTriangle (Vector2 p, Vector2 p0, Vector2 p1, Vector2 p2) {
+        var a = .5f * (-p1.y * p2.x + p0.y * (-p1.x + p2.x) + p0.x * (p1.y - p2.y) + p1.x * p2.y);
+        var sign = a < 0 ? -1 : 1;
+        var s = (p0.y * p2.x - p0.x * p2.y + (p2.y - p0.y) * p.x + (p0.x - p2.x) * p.y) * sign;
+        var t = (p0.x * p1.y - p0.y * p1.x + (p0.y - p1.y) * p.x + (p1.x - p0.x) * p.y) * sign;
+
+        return s > 0 && t > 0 && (s + t) < 2 * a * sign;
+    }
 
 }
